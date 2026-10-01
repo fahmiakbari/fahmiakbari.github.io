@@ -3,457 +3,86 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Data Analyst portfolio featuring analytics projects, data visualizations, and business insights.">
-  <meta name="theme-color" content="#ffffff">
-  <title>Your Name — Data Analyst</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='4' fill='%23243d5a'/%3E%3Cpath d='M15 45V31h8v14zm13 0V20h8v25zm13 0V12h8v33z' fill='%237b3045'/%3E%3C/svg%3E">
-  <style>
-    :root {
-      --bg: #090d18;
-      --surface: #101725;
-      --surface-2: #151e30;
-      --line: rgba(164, 182, 220, .16);
-      --text: #f4f7ff;
-      --muted: #9ca9c3;
-      --blue: #7b91ff;
-      --mint: #6ee7cf;
-      --amber: #ffbe6b;
-      --shadow: 0 24px 80px rgba(0, 0, 0, .28);
-      --radius: 22px;
-      --max: 1180px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      min-width: 320px;
-      background:
-        radial-gradient(circle at 84% 6%, rgba(123, 145, 255, .15), transparent 26rem),
-        radial-gradient(circle at 8% 30%, rgba(110, 231, 207, .07), transparent 23rem),
-        var(--bg);
-      color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: 16px;
-      line-height: 1.65;
-      overflow-x: hidden;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: linear-gradient(to bottom, #000, transparent 78%);
-    }
-    a { color: inherit; }
-    button, a { -webkit-tap-highlight-color: transparent; }
-    button { font: inherit; }
-    :focus-visible { outline: 3px solid var(--mint); outline-offset: 4px; }
-    .skip-link { position: fixed; top: 8px; left: 8px; z-index: 999; padding: .75rem 1rem; background: var(--text); color: var(--bg); transform: translateY(-150%); border-radius: 10px; }
-    .skip-link:focus { transform: none; }
-    .wrap { width: min(calc(100% - 40px), var(--max)); margin-inline: auto; }
-    .section { padding: 104px 0; scroll-margin-top: 86px; }
-    .eyebrow { margin: 0 0 12px; color: var(--mint); font: 700 .78rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .14em; text-transform: uppercase; }
-    .eyebrow::before { content: "// "; color: var(--blue); }
-    .section-title { max-width: 780px; margin: 0; font-size: clamp(2rem, 4.5vw, 4rem); line-height: 1.04; letter-spacing: -.045em; }
-    .section-lead { max-width: 650px; margin: 20px 0 0; color: var(--muted); font-size: 1.05rem; }
-
-    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 90; background: rgba(9, 13, 24, .74); border-bottom: 1px solid transparent; backdrop-filter: blur(18px); transition: border-color .25s, background .25s; }
-    .site-header.scrolled { background: rgba(9, 13, 24, .92); border-color: var(--line); }
-    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 800; letter-spacing: -.02em; }
-    .brand-mark { display: grid; place-items: center; width: 36px; height: 36px; color: var(--bg); background: var(--mint); border-radius: 11px; font: 900 .8rem/1 ui-monospace, monospace; box-shadow: 0 0 26px rgba(110, 231, 207, .2); }
-    .nav-links { display: flex; align-items: center; gap: 26px; margin: 0; padding: 0; list-style: none; }
-    .nav-links a { color: var(--muted); font-size: .88rem; font-weight: 650; text-decoration: none; transition: color .2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--text); }
-    .nav-cta { padding: .67rem 1rem; border: 1px solid var(--line); border-radius: 999px; color: var(--text) !important; background: rgba(255,255,255,.03); }
-    .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 12px; color: var(--text); background: var(--surface); cursor: pointer; }
-    .menu-toggle span, .menu-toggle::before, .menu-toggle::after { content: ""; display: block; width: 18px; height: 2px; margin: 4px auto; background: currentColor; transition: transform .2s, opacity .2s; }
-    .menu-toggle.open span { opacity: 0; }
-    .menu-toggle.open::before { transform: translateY(6px) rotate(45deg); }
-    .menu-toggle.open::after { transform: translateY(-6px) rotate(-45deg); }
-
-    .hero { min-height: 100svh; display: grid; align-items: center; padding: 122px 0 70px; }
-    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(420px, .98fr); align-items: center; gap: clamp(44px, 8vw, 110px); }
-    .availability { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 27px; padding: .45rem .8rem; border: 1px solid rgba(110, 231, 207, .24); border-radius: 999px; color: var(--mint); background: rgba(110, 231, 207, .06); font-size: .78rem; font-weight: 750; }
-    .availability-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 0 6px rgba(110, 231, 207, .08); }
-    .hero h1 { margin: 0; font-size: clamp(3.4rem, 7vw, 6.8rem); line-height: .89; letter-spacing: -.065em; }
-    .hero h1 span { display: block; color: transparent; -webkit-text-stroke: 1.4px var(--blue); }
-    .hero-copy { max-width: 650px; margin: 30px 0 0; color: var(--muted); font-size: clamp(1.02rem, 1.5vw, 1.18rem); }
-    .hero-copy strong { color: var(--text); font-weight: 650; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
-    .btn { display: inline-flex; min-height: 50px; align-items: center; justify-content: center; gap: 9px; padding: .8rem 1.22rem; border: 1px solid var(--line); border-radius: 13px; color: var(--text); background: rgba(255,255,255,.035); text-decoration: none; font-weight: 750; transition: transform .2s, border-color .2s, background .2s; }
-    .btn:hover { transform: translateY(-2px); border-color: rgba(123,145,255,.5); background: rgba(123,145,255,.08); }
-    .btn-primary { border-color: transparent; color: #070b14; background: var(--mint); }
-    .btn-primary:hover { background: #8df2dd; }
-
-    .data-panel { position: relative; min-height: 520px; }
-    .data-panel::before { content: ""; position: absolute; inset: 4% 2% 2% 9%; border-radius: 50%; background: radial-gradient(circle, rgba(123,145,255,.22), transparent 64%); filter: blur(28px); }
-    .dashboard { position: relative; overflow: hidden; border: 1px solid rgba(164,182,220,.2); border-radius: 26px; background: linear-gradient(145deg, rgba(21,30,48,.97), rgba(12,18,30,.97)); box-shadow: var(--shadow); transform: rotate(1deg); }
-    .dashboard-top { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; border-bottom: 1px solid var(--line); }
-    .dashboard-dots { display: flex; gap: 6px; }
-    .dashboard-dots i { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.18); }
-    .dashboard-top span { color: var(--muted); font: 650 .7rem/1 ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; }
-    .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 18px; }
-    .metric { padding: 16px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.025); }
-    .metric small { display: block; color: var(--muted); font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; }
-    .metric strong { display: block; margin-top: 8px; font-size: 1.45rem; line-height: 1; }
-    .metric em { display: inline-block; margin-top: 7px; color: var(--mint); font-size: .68rem; font-style: normal; }
-    .chart-wrap { margin: 0 18px 18px; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: rgba(3, 7, 14, .35); }
-    .chart-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
-    .chart-head strong { font-size: .88rem; }
-    .chart-head span { padding: .28rem .55rem; border-radius: 8px; color: var(--muted); background: rgba(255,255,255,.05); font-size: .68rem; }
-    .chart { width: 100%; height: auto; display: block; }
-    .chart-path { stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 2.2s .35s ease forwards; }
-    .chart-dot { animation: pulse 2s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
-    .query-card { position: absolute; right: -26px; bottom: -35px; width: min(270px, 72%); padding: 16px 18px; border: 1px solid rgba(110,231,207,.22); border-radius: 16px; background: rgba(9, 13, 24, .92); box-shadow: var(--shadow); transform: rotate(-3deg); backdrop-filter: blur(12px); }
-    .query-card p { margin: 0; color: var(--muted); font: .7rem/1.7 ui-monospace, monospace; }
-    .query-card .sql { color: var(--blue); }
-    .query-card .field { color: var(--mint); }
-
-    .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(50px, 9vw, 120px); align-items: start; }
-    .portrait-placeholder { position: sticky; top: 110px; min-height: 470px; overflow: hidden; display: grid; align-content: end; padding: 28px; border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(155deg, rgba(123,145,255,.12), rgba(110,231,207,.04)), var(--surface); }
-    .portrait-placeholder::before { content: ""; position: absolute; width: 300px; height: 300px; top: 35px; left: 50%; border: 1px solid rgba(123,145,255,.35); border-radius: 48% 52% 42% 58%; transform: translateX(-50%) rotate(14deg); }
-    .portrait-placeholder::after { content: "DATA"; position: absolute; top: 55px; left: 50%; color: rgba(255,255,255,.05); font-size: 6rem; font-weight: 900; letter-spacing: -.09em; transform: translateX(-50%) rotate(-90deg); }
-    .portrait-note { position: relative; z-index: 1; }
-    .portrait-note strong { display: block; font-size: 1.2rem; }
-    .portrait-note span { color: var(--muted); font-size: .88rem; }
-    .about-copy p { color: var(--muted); font-size: 1.04rem; }
-    .about-copy p strong { color: var(--text); }
-    .quick-facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 34px 0 0; }
-    .fact { padding: 20px; border: 1px solid var(--line); border-radius: 15px; background: rgba(255,255,255,.02); }
-    .fact span { display: block; color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; }
-    .fact strong { display: block; margin-top: 6px; font-size: .98rem; }
-
-    .skills-shell { margin-top: 48px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
-    .skill-row { display: grid; grid-template-columns: 190px 1fr; min-height: 94px; border-bottom: 1px solid var(--line); }
-    .skill-row:last-child { border-bottom: 0; }
-    .skill-label { display: flex; align-items: center; padding: 22px 25px; border-right: 1px solid var(--line); color: var(--muted); font: 700 .75rem/1.3 ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; }
-    .chips { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; padding: 20px 24px; }
-    .chip { padding: .48rem .74rem; border: 1px solid rgba(123,145,255,.22); border-radius: 9px; color: #ced6ff; background: rgba(123,145,255,.07); font-size: .84rem; font-weight: 650; }
-
-    .project-toolbar { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 42px; }
-    .filters { display: flex; flex-wrap: wrap; gap: 8px; }
-    .filter { min-height: 40px; padding: .52rem .82rem; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); background: transparent; cursor: pointer; font-weight: 700; transition: color .2s, background .2s, border-color .2s; }
-    .filter:hover, .filter.active { border-color: rgba(110,231,207,.45); color: var(--text); background: rgba(110,231,207,.08); }
-    .projects-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
-    .project { grid-column: span 6; min-height: 430px; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); transition: transform .25s, border-color .25s; }
-    .project:hover { transform: translateY(-5px); border-color: rgba(123,145,255,.42); }
-    .project.featured { grid-column: span 12; display: grid; grid-template-columns: 1.05fr .95fr; min-height: 460px; }
-    .project-art { position: relative; min-height: 220px; overflow: hidden; background: #0b1120; border-bottom: 1px solid var(--line); }
-    .featured .project-art { min-height: 100%; border-right: 1px solid var(--line); border-bottom: 0; }
-    .project-art .mini-dashboard { position: absolute; inset: 46px 35px; padding: 20px; border: 1px solid rgba(255,255,255,.13); border-radius: 15px; background: rgba(19,28,45,.96); transform: rotate(-2deg); }
-    .bars { height: 110px; display: flex; align-items: end; gap: 9px; padding-top: 12px; border-bottom: 1px solid rgba(255,255,255,.1); }
-    .bars i { flex: 1; height: var(--h); border-radius: 5px 5px 0 0; background: linear-gradient(var(--blue), rgba(123,145,255,.28)); }
-    .project:nth-child(2) .bars i { background: linear-gradient(var(--mint), rgba(110,231,207,.22)); }
-    .project:nth-child(3) .bars i { background: linear-gradient(var(--amber), rgba(255,190,107,.22)); }
-    .mini-legend { display: flex; justify-content: space-between; margin-top: 12px; color: var(--muted); font: .62rem/1 ui-monospace, monospace; }
-    .project-body { flex: 1; display: flex; flex-direction: column; padding: 29px; }
-    .project-meta { display: flex; flex-wrap: wrap; gap: 7px; }
-    .project-meta span { padding: .3rem .52rem; border-radius: 7px; color: var(--muted); background: rgba(255,255,255,.05); font-size: .68rem; font-weight: 700; }
-    .project h3 { margin: 23px 0 10px; font-size: clamp(1.35rem, 3vw, 2rem); line-height: 1.1; letter-spacing: -.03em; }
-    .project p { margin: 0; color: var(--muted); }
-    .project-result { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: auto; padding-top: 28px; }
-    .project-result strong { color: var(--mint); font-size: .86rem; }
-    .project-link { color: var(--text); font-size: .84rem; font-weight: 750; text-underline-offset: 5px; }
-    .project.hidden { display: none; }
-
-    .process { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 50px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--line); }
-    .step { min-height: 260px; padding: 28px; background: var(--surface); }
-    .step-num { color: var(--blue); font: 800 .75rem/1 ui-monospace, monospace; }
-    .step h3 { margin: 48px 0 12px; font-size: 1.14rem; }
-    .step p { margin: 0; color: var(--muted); font-size: .9rem; }
-
-    .timeline { margin-top: 50px; border-left: 1px solid var(--line); }
-    .timeline-item { position: relative; display: grid; grid-template-columns: 190px 1fr; gap: 32px; padding: 0 0 52px 34px; }
-    .timeline-item:last-child { padding-bottom: 0; }
-    .timeline-item::before { content: ""; position: absolute; top: 8px; left: -6px; width: 11px; height: 11px; border: 2px solid var(--bg); border-radius: 50%; background: var(--mint); box-shadow: 0 0 0 1px var(--mint); }
-    .timeline-date { color: var(--muted); font: 700 .76rem/1.5 ui-monospace, monospace; text-transform: uppercase; letter-spacing: .06em; }
-    .timeline-content h3 { margin: 0 0 4px; font-size: 1.25rem; }
-    .timeline-content strong { color: var(--blue); font-size: .9rem; }
-    .timeline-content p { max-width: 660px; margin: 13px 0 0; color: var(--muted); }
-    .timeline-content.placeholder { border: 1px dashed rgba(164,182,220,.25); border-radius: 14px; padding: 18px 20px; }
-
-    .contact-card { position: relative; overflow: hidden; display: grid; grid-template-columns: 1.2fr .8fr; gap: 50px; padding: clamp(32px, 6vw, 72px); border: 1px solid rgba(123,145,255,.26); border-radius: 30px; background: linear-gradient(135deg, rgba(123,145,255,.13), rgba(110,231,207,.055)), var(--surface); box-shadow: var(--shadow); }
-    .contact-card::after { content: "@"; position: absolute; right: -30px; bottom: -100px; color: rgba(255,255,255,.03); font-size: 20rem; font-weight: 900; line-height: 1; }
-    .contact-copy h2 { margin: 0; font-size: clamp(2.2rem, 5vw, 4.5rem); line-height: 1; letter-spacing: -.05em; }
-    .contact-copy p { max-width: 610px; color: var(--muted); }
-    .contact-links { position: relative; z-index: 1; display: grid; align-content: center; gap: 11px; }
-    .contact-link { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 58px; padding: .8rem 1rem; border: 1px solid var(--line); border-radius: 13px; background: rgba(9,13,24,.42); text-decoration: none; font-weight: 700; transition: border-color .2s, transform .2s; }
-    .contact-link:hover { transform: translateX(4px); border-color: rgba(110,231,207,.46); }
-    .contact-link span { color: var(--muted); font-size: .76rem; font-weight: 600; }
-
-    footer { padding: 30px 0 38px; color: var(--muted); }
-    .footer-inner { display: flex; justify-content: space-between; gap: 20px; padding-top: 26px; border-top: 1px solid var(--line); font-size: .82rem; }
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .65s ease, transform .65s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-    @keyframes draw { to { stroke-dashoffset: 0; } }
-    @keyframes pulse { 50% { opacity: .45; transform: scale(.72); } }
-
-    @media (max-width: 900px) {
-      .nav-links { position: fixed; top: 72px; left: 20px; right: 20px; display: none; align-items: stretch; flex-direction: column; gap: 0; padding: 12px; border: 1px solid var(--line); border-radius: 16px; background: rgba(16,23,37,.98); box-shadow: var(--shadow); }
-      .nav-links.open { display: flex; }
-      .nav-links a { display: block; padding: 12px; }
-      .menu-toggle { display: block; }
-      .hero-grid, .about-grid, .contact-card { grid-template-columns: 1fr; }
-      .hero-grid { gap: 64px; }
-      .data-panel { width: min(100%, 620px); min-height: 490px; margin-inline: auto; }
-      .portrait-placeholder { position: relative; top: 0; min-height: 360px; }
-      .project.featured { display: flex; }
-      .featured .project-art { min-height: 270px; border-right: 0; border-bottom: 1px solid var(--line); }
-      .process { grid-template-columns: repeat(2, 1fr); }
-      .contact-links { max-width: 580px; }
-    }
-    @media (max-width: 650px) {
-      .wrap { width: min(calc(100% - 28px), var(--max)); }
-      .section { padding: 76px 0; }
-      .hero { padding-top: 112px; }
-      .hero h1 { font-size: clamp(3rem, 16vw, 5rem); }
-      .metric-grid { grid-template-columns: 1fr; }
-      .metric:nth-child(n+2) { display: none; }
-      .data-panel { min-height: 420px; }
-      .query-card { right: -5px; bottom: -18px; }
-      .quick-facts { grid-template-columns: 1fr; }
-      .skill-row { grid-template-columns: 1fr; }
-      .skill-label { border-right: 0; border-bottom: 1px solid var(--line); }
-      .project-toolbar { align-items: start; flex-direction: column; }
-      .project { grid-column: span 12; }
-      .projects-grid { display: grid; }
-      .process { grid-template-columns: 1fr; }
-      .step { min-height: 210px; }
-      .timeline-item { grid-template-columns: 1fr; gap: 8px; }
-      .contact-card { padding: 30px 22px; }
-      .footer-inner { flex-direction: column; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-      .reveal { opacity: 1; transform: none; }
-    }
-  </style>
+  <meta name="description" content="Fahmi Akbari — Data Analyst. A portfolio of analytical thinking, dashboards, and work in progress.">
+  <meta name="theme-color" content="#f2f0e8">
+  <title>Fahmi Akbari — Data Analyst</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231c302b'/%3E%3Cpath d='M14 45V31h8v14zm14 0V23h8v22zm14 0V14h8v31z' fill='%23dfeaaf'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="editorial.css">
-  <noscript><style>
-    .site-header { position: static; }
-    .nav { flex-wrap: wrap; padding-block: 16px; }
-    .nav-links { position: static; display: flex; flex-wrap: wrap; flex-direction: row; width: 100%; order: 3; margin: 0; box-shadow: none; }
-    .menu-toggle, .filters { display: none; }
-    .hero { padding-top: 50px; }
-  </style></noscript>
+  <script src="site.js" defer></script>
+  <noscript><style>.menu-toggle,.filters,.filter-status{display:none!important}.nav-links{display:flex!important;position:static!important;flex-wrap:wrap}.header{position:relative!important}.nav{flex-wrap:wrap}</style></noscript>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header" id="header">
-    <nav class="nav wrap" aria-label="Primary navigation">
-      <a class="brand" href="#home" aria-label="Back to home"><span class="brand-mark">DA</span><span>Your Name</span></a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Project</a></li>
-        <li><a href="#approach">Approach</a></li>
-        <li><a class="nav-cta" href="#contact">Contact</a></li>
-      </ul>
-      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false"><span></span></button>
-    </nav>
-  </header>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="header" id="header">
+  <nav class="nav wrap" aria-label="Primary navigation">
+    <a class="brand" href="#home" aria-label="Fahmi Akbari, home"><span class="brand-mark" aria-hidden="true">fa<span>.</span></span><span class="brand-name">Fahmi Akbari<small>Data Analyst</small></span></a>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">Menu <span aria-hidden="true">+</span></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li><li><a href="#projects">Project</a></li><li><a href="#approach">Approach</a></li><li><a href="#contact">Contact <span aria-hidden="true">↗</span></a></li>
+    </ul>
+  </nav>
+</header>
+<main id="main" tabindex="-1">
+  <section class="hero wrap" id="home" aria-labelledby="hero-title">
+    <div class="hero-top"><p class="eyebrow">Data, with perspective.</p><span class="draft-label">Portfolio in progress</span></div>
+    <div class="hero-layout">
+      <div class="hero-copy"><p class="intro">Hello, I'm <strong>Fahmi Akbari</strong> — Data Analyst.</p><h1 id="hero-title">A closer look.<br>A <em>clearer</em> answer.</h1><p class="hero-description">Making sense of data, one good question at a time. A collection of projects, methods, and the thinking behind the work.</p><a class="button primary" href="#projects">Explore the work <span aria-hidden="true">↘</span></a></div>
+      <aside class="hero-aside" aria-label="Profile photo"><div class="portrait-slot"><img src="assets/fahmi-akbari.png" alt="Portrait of Fahmi Akbari" width="1254" height="1254" fetchpriority="high"></div><p>A face behind<br>the analysis.</p><span class="aside-note">[City, Country]</span></aside>
+    </div>
+    <div class="hero-bottom"><span>Questions → Evidence → Decisions</span><a href="#projects">Selected work below <span aria-hidden="true">↓</span></a></div>
+  </section>
 
-  <main id="main" tabindex="-1">
-    <section class="hero" id="home">
-      <div class="hero-grid wrap">
-        <div class="hero-content">
-          <div class="availability">PORTFOLIO / DATA ANALYST</div>
-          <h1>Data into <span>decisions.</span></h1>
-          <p class="hero-copy">Hi, I'm <strong>[Your Name]</strong> — a data analyst who turns raw data into clear insights, approachable dashboards, and actionable recommendations.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#projects">View projects</a>
-            <a class="btn" href="#contact">Get in touch</a>
-          </div>
-        </div>
-
+  <section class="work-section dark-section" id="projects" aria-labelledby="project-title">
+    <div class="wrap">
+      <div class="section-heading"><div><p class="eyebrow section-index">01 / Project</p><h2 id="project-title">The work.<br><em>The thinking behind it.</em></h2></div><p class="section-note">A closer look at each question, the analysis, and what comes next.<br><span class="muted">Sample projects below are placeholders.</span></p></div>
+      <div class="work-toolbar"><div class="filters" role="group" aria-label="Filter projects"><button class="filter active" data-filter="all" aria-pressed="true" aria-controls="projectList">All work</button><button class="filter" data-filter="dashboard" aria-pressed="false" aria-controls="projectList">Dashboard</button><button class="filter" data-filter="python" aria-pressed="false" aria-controls="projectList">Python</button><button class="filter" data-filter="sql" aria-pressed="false" aria-controls="projectList">SQL</button></div><p class="filter-status" id="filterStatus" role="status" aria-live="polite" aria-atomic="true">3 projects shown</p></div>
+      <div class="project-list" id="projectList">
+        <article class="project project-featured" data-category="dashboard sql" aria-labelledby="project-one-title">
+          <div class="project-image retail"><div class="image-topline"><span>01 / Business analytics</span><span>Screenshot pending</span></div><div class="image-placeholder"><span class="preview-cross" aria-hidden="true">+</span><p>Room for the<br><em>real picture.</em></p><span>Add your dashboard screenshot</span></div><div class="image-bottomline"><span>Retail sales</span><span aria-hidden="true">16:10</span></div></div>
+          <div class="project-content"><div class="project-meta"><span>Case study 01</span><span class="pending-tag">Placeholder</span></div><h3 id="project-one-title">Retail Sales<br>Performance Dashboard</h3><p class="project-summary">A sample space for a sales analysis project, from the business question to the final dashboard.</p><ul class="tags" aria-label="Example tools"><li>Power BI</li><li>SQL</li></ul><dl class="case-notes"><div><dt>The question</dt><dd>[Add the business problem and who needed an answer.]</dd></div><div><dt>The approach</dt><dd>[Add the data source, preparation, and analysis.]</dd></div><div><dt>The outcome</dt><dd>[Add a verified finding or result when the project is ready.]</dd></div></dl><a class="text-link" href="#contact">Discuss this project <span aria-hidden="true">↗</span></a></div>
+        </article>
+        <article class="project" data-category="python" aria-labelledby="project-two-title">
+          <div class="project-image churn"><div class="image-topline"><span>02 / Customer analytics</span><span>Screenshot pending</span></div><div class="image-placeholder"><span class="preview-cross" aria-hidden="true">+</span><p>Patterns worth<br><em>looking into.</em></p><span>Add your analysis screenshot</span></div><div class="image-bottomline"><span>Customer churn</span><span aria-hidden="true">16:10</span></div></div>
+          <div class="project-content"><div class="project-meta"><span>Case study 02</span><span class="pending-tag">Placeholder</span></div><h3 id="project-two-title">Customer Churn Analysis</h3><p class="project-summary">A sample space for exploring customer behavior and presenting a clear analytical story.</p><ul class="tags" aria-label="Example tools"><li>Python</li><li>Pandas</li><li>EDA</li></ul><dl class="case-notes"><div><dt>The question</dt><dd>[Add the retention question and project context.]</dd></div><div><dt>The approach</dt><dd>[Add your preparation, exploration, and validation.]</dd></div><div><dt>The outcome</dt><dd>[Add verified findings, limitations, and next steps.]</dd></div></dl><a class="text-link" href="#contact">Discuss this project <span aria-hidden="true">↗</span></a></div>
+        </article>
+        <article class="project" data-category="dashboard sql" aria-labelledby="project-three-title">
+          <div class="project-image supply"><div class="image-topline"><span>03 / Operations analytics</span><span>Screenshot pending</span></div><div class="image-placeholder"><span class="preview-cross" aria-hidden="true">+</span><p>See how<br><em>it connects.</em></p><span>Add your dashboard screenshot</span></div><div class="image-bottomline"><span>Supply chain</span><span aria-hidden="true">16:10</span></div></div>
+          <div class="project-content"><div class="project-meta"><span>Case study 03</span><span class="pending-tag">Placeholder</span></div><h3 id="project-three-title">Supply Chain Monitor</h3><p class="project-summary">A sample space for making operational data easier to understand and act on.</p><ul class="tags" aria-label="Example tools"><li>Tableau</li><li>SQL</li></ul><dl class="case-notes"><div><dt>The question</dt><dd>[Add the operational problem and project scope.]</dd></div><div><dt>The approach</dt><dd>[Add the data, metrics, and dashboard decisions.]</dd></div><div><dt>The outcome</dt><dd>[Add a verified insight and its practical implications.]</dd></div></dl><a class="text-link" href="#contact">Discuss this project <span aria-hidden="true">↗</span></a></div>
+        </article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section" id="about">
-      <div class="about-grid wrap">
-        <div class="portrait-placeholder reveal" aria-label="Placeholder for your profile photo">
-          <div class="portrait-note"><strong>Add your photo</strong><span>Professional portrait or personal illustration</span></div>
-        </div>
-        <div class="about-copy reveal">
-          <p class="eyebrow">About me</p>
-          <h2 class="section-title">I find the story behind the numbers.</h2>
-          <p>I help teams understand <strong>what happened, why it happened, and what to do next.</strong> My approach combines careful analysis with simple, effective visual communication.</p>
-          <p>Use this space to share your education, experience, industries of interest, and approach to data analysis.</p>
-          <div class="quick-facts">
-            <div class="fact"><span>Location</span><strong>[City, Country]</strong></div>
-            <div class="fact"><span>Focus</span><strong>Business & Product Analytics</strong></div>
-            <div class="fact"><span>Languages</span><strong>[Your languages]</strong></div>
-            <div class="fact"><span>Status</span><strong>Open to work</strong></div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <section class="about-section wrap section-space" id="about" aria-labelledby="about-title">
+    <div class="section-rail"><p class="eyebrow">02 / About</p><span class="rail-word" aria-hidden="true">A little<br>context.</span></div>
+    <div class="about-body"><h2 id="about-title">Behind every dataset,<br>there's a <em>better question.</em></h2><p class="about-lead">I'm Fahmi Akbari, a Data Analyst with an interest in [your area of interest].</p><p class="muted">[Share what drew you to analytics, the kinds of problems you enjoy, and what you bring to a team. Keep it specific to your own experience.]</p><dl class="personal-facts"><div><dt>Based in</dt><dd>[City, Country]</dd></div><div><dt>Interested in</dt><dd>[Your focus areas]</dd></div></dl><div class="toolkit" id="skills"><div class="toolkit-heading"><h3>The toolkit</h3><span class="small-note">Example tools · confirm your own</span></div><div class="tool-row"><span>Analysis</span><p>SQL / Python / Excel</p></div><div class="tool-row"><span>Visualization</span><p>Power BI / Tableau</p></div><div class="tool-row"><span>Foundations</span><p>Data cleaning / Statistics / Storytelling</p></div></div></div>
+  </section>
 
-    <section class="section" id="skills">
-      <div class="wrap">
-        <div class="reveal"><p class="eyebrow">Toolkit</p><h2 class="section-title">Tools for answering business questions.</h2><p class="section-lead">Keep only the tools and methods you actually use.</p></div>
-        <div class="skills-shell reveal">
-          <div class="skill-row"><div class="skill-label">Analysis</div><div class="chips"><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">Excel</span><span class="chip">Statistics</span><span class="chip">A/B Testing</span></div></div>
-          <div class="skill-row"><div class="skill-label">Visualization</div><div class="chips"><span class="chip">Power BI</span><span class="chip">Tableau</span><span class="chip">Looker Studio</span><span class="chip">Matplotlib</span><span class="chip">Seaborn</span></div></div>
-          <div class="skill-row"><div class="skill-label">Data</div><div class="chips"><span class="chip">Data Cleaning</span><span class="chip">ETL</span><span class="chip">Data Modeling</span><span class="chip">PostgreSQL</span><span class="chip">BigQuery</span></div></div>
-          <div class="skill-row"><div class="skill-label">Collaboration</div><div class="chips"><span class="chip">Business Insight</span><span class="chip">Storytelling</span><span class="chip">Presentation</span><span class="chip">Documentation</span></div></div>
-        </div>
-      </div>
-    </section>
+  <section class="approach-section" id="approach" aria-labelledby="approach-title"><div class="wrap section-space"><div class="section-heading"><div><p class="eyebrow">03 / Approach</p><h2 id="approach-title">The question<br><em>comes first.</em></h2></div><p class="section-note">A framework for moving from raw data to a useful recommendation.</p></div><ol class="process-list"><li><span class="step-number">01</span><h3>Define.</h3><p>Start with the decision. Understand the problem, the audience, and what a useful answer looks like.</p></li><li><span class="step-number">02</span><h3>Prepare.</h3><p>Get the foundations right. Clean the data, check its quality, and document the assumptions.</p></li><li><span class="step-number">03</span><h3>Analyze.</h3><p>Follow the evidence. Explore patterns, test assumptions, and choose visuals that make the findings clear.</p></li><li><span class="step-number">04</span><h3>Recommend.</h3><p>Make the work useful. Explain the findings, acknowledge limitations, and identify the next step.</p></li></ol></div></section>
 
-    <section class="section" id="projects">
-      <div class="wrap">
-        <div class="project-toolbar reveal">
-          <div><p class="eyebrow">Selected work</p><h2 class="section-title">Selected analytics projects.</h2></div>
-          <div class="filters" role="group" aria-label="Filter projects">
-            <button class="filter active" type="button" data-filter="all" aria-pressed="true" aria-controls="projectList">All</button>
-            <button class="filter" type="button" data-filter="dashboard" aria-pressed="false" aria-controls="projectList">Dashboard</button>
-            <button class="filter" type="button" data-filter="python" aria-pressed="false" aria-controls="projectList">Python</button>
-            <button class="filter" type="button" data-filter="sql" aria-pressed="false" aria-controls="projectList">SQL</button>
-          </div>
-        </div>
-        <p class="filter-status" id="filterStatus" role="status" aria-live="polite" aria-atomic="true">3 projects shown</p>
-        <div class="projects-grid" id="projectList">
-          <article class="project featured reveal" data-category="dashboard sql">
-            <div class="project-art"><div class="mini-dashboard"><strong>Retail Sales Pulse</strong><div class="bars"><i style="--h:36%"></i><i style="--h:58%"></i><i style="--h:47%"></i><i style="--h:76%"></i><i style="--h:69%"></i><i style="--h:92%"></i><i style="--h:84%"></i></div><div class="mini-legend"><span>Jan</span><span>Jul</span></div></div></div>
-            <div class="project-body"><div class="project-meta"><span>POWER BI</span><span>SQL</span><span>BUSINESS ANALYSIS</span></div><h3>Retail Sales Performance Dashboard</h3><p>An example dashboard concept for tracking sales, margins, targets, and product performance across regions. Replace this description with your actual problem, approach, and outcome.</p><div class="project-result"><strong>Example only · replace with a real result</strong><a class="project-link" href="#contact">Ask for details</a></div></div>
-          </article>
-          <article class="project reveal" data-category="python">
-            <div class="project-art"><div class="mini-dashboard"><strong>Churn segments</strong><div class="bars"><i style="--h:78%"></i><i style="--h:44%"></i><i style="--h:66%"></i><i style="--h:29%"></i><i style="--h:88%"></i><i style="--h:53%"></i></div><div class="mini-legend"><span>Low risk</span><span>High risk</span></div></div></div>
-            <div class="project-body"><div class="project-meta"><span>PYTHON</span><span>PANDAS</span><span>EDA</span></div><h3>Customer Churn Analysis</h3><p>An example analysis of potential churn drivers and customer segments that could guide retention priorities.</p><div class="project-result"><strong>Example only · replace with a real insight</strong><a class="project-link" href="#contact">Ask for details</a></div></div>
-          </article>
-          <article class="project reveal" data-category="dashboard sql">
-            <div class="project-art"><div class="mini-dashboard"><strong>Supply chain</strong><div class="bars"><i style="--h:31%"></i><i style="--h:63%"></i><i style="--h:52%"></i><i style="--h:82%"></i><i style="--h:71%"></i><i style="--h:95%"></i></div><div class="mini-legend"><span>On time</span><span>Delayed</span></div></div></div>
-            <div class="project-body"><div class="project-meta"><span>TABLEAU</span><span>SQL</span><span>OPERATIONS</span></div><h3>Supply Chain Monitor</h3><p>An example analysis of lead times, delays, and supplier performance to surface operational bottlenecks.</p><div class="project-result"><strong>Example only · replace with a real insight</strong><a class="project-link" href="#contact">Ask for details</a></div></div>
-          </article>
-        </div>
-      </div>
-    </section>
+  <div class="background wrap section-space">
+    <section class="resume-section" id="experience" aria-labelledby="experience-title"><div><p class="eyebrow">04 / Experience</p><h2 id="experience-title">Where I've<br><em>contributed.</em></h2></div><div class="resume-list"><article class="resume-item"><p class="resume-date">[20XX — Present]</p><h3>[Most Recent Role]</h3><p class="organization">[Company or Organization]</p><p class="muted">[Describe your responsibilities, the problems you worked on, and any verified contributions.]</p></article><article class="resume-item"><p class="resume-date">[20XX — 20XX]</p><h3>[Previous Experience]</h3><p class="organization">[Company or Organization]</p><p class="muted">[Add relevant employment, an internship, or freelance work. Remove this entry if it does not apply.]</p></article></div></section>
+    <section class="resume-section education-section" id="education" aria-labelledby="education-title"><div><p class="eyebrow">05 / Education</p><h2 id="education-title">The<br><em>foundations.</em></h2></div><div class="resume-list"><article class="resume-item"><p class="resume-date">[20XX — 20XX]</p><h3>[Degree / Field of Study]</h3><p class="organization">[School or University]</p><p class="muted">[Add relevant coursework, a thesis, or an academic project that shaped your interest in analytics.]</p></article></div></section>
+  </div>
 
-    <section class="section" id="approach" aria-labelledby="process-title">
-      <div class="wrap">
-        <div class="reveal"><p class="eyebrow">My approach</p><h2 class="section-title" id="process-title">From questions to recommendations.</h2></div>
-        <div class="process reveal">
-          <div class="step"><span class="step-num">01</span><h3>Define</h3><p>Understand the business goal, audience, and measures of success.</p></div>
-          <div class="step"><span class="step-num">02</span><h3>Prepare</h3><p>Collect, clean, and validate the data.</p></div>
-          <div class="step"><span class="step-num">03</span><h3>Analyze</h3><p>Find patterns, test assumptions, and build visualizations.</p></div>
-          <div class="step"><span class="step-num">04</span><h3>Recommend</h3><p>Turn findings into clear, measurable decisions.</p></div>
-        </div>
-      </div>
-    </section>
+  <section class="certificates-section section-space" id="certificates" aria-labelledby="certificates-title"><div class="wrap"><div class="section-heading"><div><p class="eyebrow">06 / Certificates</p><h2 id="certificates-title">Always<br><em>building on it.</em></h2></div><p class="section-note">A growing collection of learning and credentials.<br><span class="muted">Placeholder entries — real certificates to follow.</span></p></div><ol class="certificate-list" id="certificateList">
+    <!-- Duplicate a certificate-item for each real certificate. There is no collection limit. -->
+    <li class="certificate-item"><span class="certificate-number" aria-hidden="true">01</span><div><p class="certificate-date">[Month, Year]</p><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link pending</span></div></li>
+    <li class="certificate-item"><span class="certificate-number" aria-hidden="true">02</span><div><p class="certificate-date">[Month, Year]</p><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link pending</span></div></li>
+    <li class="certificate-item"><span class="certificate-number" aria-hidden="true">03</span><div><p class="certificate-date">[Month, Year]</p><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link pending</span></div></li>
+    <li class="certificate-item"><span class="certificate-number" aria-hidden="true">04</span><div><p class="certificate-date">[Month, Year]</p><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link pending</span></div></li>
+    <li class="certificate-item"><span class="certificate-number" aria-hidden="true">05</span><div><p class="certificate-date">[Month, Year]</p><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link pending</span></div></li>
+    <li class="certificate-item"><span class="certificate-number" aria-hidden="true">06</span><div><p class="certificate-date">[Month, Year]</p><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link pending</span></div></li>
+    <li class="certificate-item"><span class="certificate-number" aria-hidden="true">07</span><div><p class="certificate-date">[Month, Year]</p><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link pending</span></div></li>
+    <li class="certificate-item"><span class="certificate-number" aria-hidden="true">08</span><div><p class="certificate-date">[Month, Year]</p><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link pending</span></div></li>
+    <li class="certificate-item"><span class="certificate-number" aria-hidden="true">09</span><div><p class="certificate-date">[Month, Year]</p><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link pending</span></div></li>
+    <li class="certificate-item"><span class="certificate-number" aria-hidden="true">10</span><div><p class="certificate-date">[Month, Year]</p><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link pending</span></div></li>
+    <li class="certificate-item"><span class="certificate-number" aria-hidden="true">11</span><div><p class="certificate-date">[Month, Year]</p><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link pending</span></div></li>
+    <li class="certificate-item"><span class="certificate-number" aria-hidden="true">12</span><div><p class="certificate-date">[Month, Year]</p><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link pending</span></div></li>
+  </ol><div class="certificate-controls" id="certificateControls" hidden><p id="certificateStatus" role="status" aria-live="polite" aria-atomic="true"></p><button class="button outline" id="certificateMore" aria-controls="certificateList" aria-expanded="false">Show more certificates</button></div></div></section>
 
-    <section class="section history-section" id="experience" aria-labelledby="experience-title">
-      <div class="wrap history-layout">
-        <div class="section-intro"><p class="eyebrow">Career</p><h2 class="section-title" id="experience-title">Experience.</h2><p class="section-lead">Professional roles, internships, and freelance work.</p></div>
-        <div class="timeline">
-          <div class="timeline-item"><div class="timeline-date">20XX — PRESENT</div><div class="timeline-content placeholder"><h3>[Most Recent Role]</h3><strong>[Company or Organization]</strong><p>Describe your responsibilities, the data and tools you worked with, and the measurable impact you made.</p></div></div>
-          <div class="timeline-item"><div class="timeline-date">20XX — 20XX</div><div class="timeline-content placeholder"><h3>[Previous Experience]</h3><strong>[Company or Organization]</strong><p>Focus on the problem you solved and the results relevant to data analyst roles.</p></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section history-section" id="education" aria-labelledby="education-title">
-      <div class="wrap history-layout">
-        <div class="section-intro"><p class="eyebrow">Academic background</p><h2 class="section-title" id="education-title">Education.</h2><p class="section-lead">Formal education and areas of study.</p></div>
-        <div class="timeline">
-          <div class="timeline-item"><div class="timeline-date">20XX — 20XX</div><div class="timeline-content placeholder"><h3>[Degree / Field of Study]</h3><strong>[School or University]</strong><p>Add relevant coursework, a thesis, or an academic project you would like to highlight.</p></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="certificates" aria-labelledby="certificates-title">
-      <div class="wrap">
-        <div class="section-intro"><p class="eyebrow">Continued learning</p><h2 class="section-title" id="certificates-title">Certificates.</h2><p class="section-lead">Placeholder entries. Add your real certificates and verification links here.</p></div>
-        <ol class="certificate-list" id="certificateList">
-          <li class="certificate-item">
-            <span class="certificate-number" aria-hidden="true">01</span>
-            <div class="certificate-detail"><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link not added</span></div>
-            <span class="certificate-date">[Month, Year]</span>
-          </li>
-          <li class="certificate-item">
-            <span class="certificate-number" aria-hidden="true">02</span>
-            <div class="certificate-detail"><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link not added</span></div>
-            <span class="certificate-date">[Month, Year]</span>
-          </li>
-          <li class="certificate-item">
-            <span class="certificate-number" aria-hidden="true">03</span>
-            <div class="certificate-detail"><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link not added</span></div>
-            <span class="certificate-date">[Month, Year]</span>
-          </li>
-          <li class="certificate-item">
-            <span class="certificate-number" aria-hidden="true">04</span>
-            <div class="certificate-detail"><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link not added</span></div>
-            <span class="certificate-date">[Month, Year]</span>
-          </li>
-          <li class="certificate-item">
-            <span class="certificate-number" aria-hidden="true">05</span>
-            <div class="certificate-detail"><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link not added</span></div>
-            <span class="certificate-date">[Month, Year]</span>
-          </li>
-          <li class="certificate-item">
-            <span class="certificate-number" aria-hidden="true">06</span>
-            <div class="certificate-detail"><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link not added</span></div>
-            <span class="certificate-date">[Month, Year]</span>
-          </li>
-          <li class="certificate-item">
-            <span class="certificate-number" aria-hidden="true">07</span>
-            <div class="certificate-detail"><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link not added</span></div>
-            <span class="certificate-date">[Month, Year]</span>
-          </li>
-          <li class="certificate-item">
-            <span class="certificate-number" aria-hidden="true">08</span>
-            <div class="certificate-detail"><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link not added</span></div>
-            <span class="certificate-date">[Month, Year]</span>
-          </li>
-          <li class="certificate-item">
-            <span class="certificate-number" aria-hidden="true">09</span>
-            <div class="certificate-detail"><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link not added</span></div>
-            <span class="certificate-date">[Month, Year]</span>
-          </li>
-          <li class="certificate-item">
-            <span class="certificate-number" aria-hidden="true">10</span>
-            <div class="certificate-detail"><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link not added</span></div>
-            <span class="certificate-date">[Month, Year]</span>
-          </li>
-          <li class="certificate-item">
-            <span class="certificate-number" aria-hidden="true">11</span>
-            <div class="certificate-detail"><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link not added</span></div>
-            <span class="certificate-date">[Month, Year]</span>
-          </li>
-          <li class="certificate-item">
-            <span class="certificate-number" aria-hidden="true">12</span>
-            <div class="certificate-detail"><h3>[Certificate Name]</h3><p>[Issuing Organization]</p><span class="certificate-pending">Verification link not added</span></div>
-            <span class="certificate-date">[Month, Year]</span>
-          </li>
-        </ol>
-        <div class="certificate-controls" id="certificateControls" hidden>
-          <p id="certificateStatus" role="status" aria-live="polite" aria-atomic="true"></p>
-          <button class="btn" id="certificateMore" type="button" aria-controls="certificateList" aria-expanded="false">Show more certificates</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="wrap">
-        <div class="contact-card reveal">
-          <div class="contact-copy"><p class="eyebrow">Contact</p><h2>Let's turn data into impact.</h2><p>I'm open to work opportunities, project collaborations, and conversations about analytics. Replace the links here with your own before sharing the site.</p><span class="btn btn-primary placeholder-contact" aria-disabled="true">your.email@example.com</span></div>
-          <div class="contact-links">
-            <span class="contact-link placeholder-contact" aria-disabled="true" aria-label="Replace with your LinkedIn URL">LinkedIn <span>Add your URL</span></span>
-            <span class="contact-link placeholder-contact" aria-disabled="true" aria-label="Replace with your GitHub URL">GitHub <span>Add your URL</span></span>
-            <span class="contact-link placeholder-contact" aria-disabled="true" aria-label="Replace with your Tableau or Power BI URL">Dashboard Portfolio <span>Add your URL</span></span>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer><div class="footer-inner wrap"><span>© <span id="year"></span> [Your Name].</span><span>Made to tell stories through data.</span></div></footer>
-
-  <script src="site.js"></script>
+  <section class="contact-section dark-section section-space" id="contact" aria-labelledby="contact-title"><div class="wrap"><p class="eyebrow">07 / Contact</p><div class="contact-layout"><div><h2 id="contact-title">Have a good<br><em>question?</em></h2><p>Let's start a conversation about data,<br>an interesting problem, or working together.</p></div><div class="contact-details"><p class="eyebrow">Get in touch</p><span class="email-placeholder">[your.email@example.com]</span><p class="small-note">Contact details coming soon.</p><div class="social-placeholders"><span>LinkedIn <small>URL pending</small></span><span>GitHub <small>URL pending</small></span><span>Dashboard portfolio <small>URL pending</small></span></div></div></div><footer class="footer"><span>© <span id="year">2026</span> Fahmi Akbari</span><span>Built around better questions.</span><a href="#home">Back to top <span aria-hidden="true">↑</span></a></footer></div></section>
+</main>
 </body>
 </html>
+

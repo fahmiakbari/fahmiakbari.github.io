@@ -5,7 +5,8 @@
   const navAnchors = [...navLinks.querySelectorAll('a')];
   const filters = [...document.querySelectorAll('.filter')];
   const projects = [...document.querySelectorAll('.project')];
-  const mobile = window.matchMedia('(max-width: 1150px)');
+  const mobile = window.matchMedia('(max-width: 760px)');
+  document.getElementById('filterStatus').textContent = `${projects.length} ${projects.length === 1 ? 'project' : 'projects'} shown`;
 
   document.getElementById('year').textContent = new Date().getFullYear();
   const updateHeader = () => header.classList.toggle('scrolled', window.scrollY > 18);
@@ -91,3 +92,4 @@
     });
   }
 })();
+
