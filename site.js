@@ -9,10 +9,11 @@
   document.getElementById('filterStatus').textContent = `${projects.length} ${projects.length === 1 ? 'project' : 'projects'} shown`;
 
   document.getElementById('year').textContent = new Date().getFullYear();
-  // Approach belongs to About; both resume sections belong to Background.
+  // About is the opening introduction; Background contains both resume sections.
+  // Skills and Approach have no dedicated primary navigation item.
   const sectionGroups = [
-    ['home', null], ['projects', '#projects'], ['about', '#about'],
-    ['approach', '#about'], ['background', '#background'],
+    ['home', '#home'], ['projects', '#projects'], ['skills', null],
+    ['approach', null], ['background', '#background'],
     ['certificates', '#certificates'], ['contact', '#contact'],
   ].map(([id, hash]) => ({ element: document.getElementById(id), hash }));
   let navigationFrame = 0;

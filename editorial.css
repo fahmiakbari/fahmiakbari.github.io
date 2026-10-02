@@ -111,6 +111,20 @@ html { scroll-padding-top: calc(var(--header-height) + 16px); }
   .hero-layout { padding-block: 36px; }
 }
 
+/* Unified introduction and compact standalone toolkit */
+.hero { position: relative; }
+.legacy-about-anchor { position: absolute; top: 0; }
+.hero-description { max-width: 610px; }
+.skills-section { display: grid; grid-template-columns: 1fr 2fr; gap: 55px; padding-block: 56px; }
+.skills-section .section-rail .eyebrow { margin-bottom: 18px; }
+.skills-section h2 { font-size: clamp(2rem, 3vw, 3rem); }
+.skills-section .toolkit { padding-top: 0; min-width: 0; }
+.skills-section .toolkit > .small-note { margin-bottom: 16px; }
+@media (max-width: 760px) {
+  .hero-aside { display: block; }
+  .skills-section { grid-template-columns: 1fr; gap: 25px; padding-block: 40px; }
+}
+
 /* Project detail page */
 .case-study-page { background: var(--paper); }
 .case-header { position: sticky; top: 0; z-index: 20; background: rgba(242,240,232,.96); border-bottom: 1px solid var(--line); }

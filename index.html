@@ -7,8 +7,8 @@
   <meta name="theme-color" content="#f2f0e8">
   <title>Fahmi Akbari — Data Analytics Portfolio</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231c302b'/%3E%3Cpath d='M14 45V31h8v14zm14 0V23h8v22zm14 0V14h8v31z' fill='%23dfeaaf'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="editorial.css?v=project-detail-5">
-  <script src="site.js?v=compact-nav-3" defer></script>
+  <link rel="stylesheet" href="editorial.css?v=unified-intro-6">
+  <script src="site.js?v=unified-intro-6" defer></script>
   <noscript><style>.menu-toggle,.filters,.filter-status{display:none!important}.nav-links{display:flex!important;position:static!important;flex-wrap:wrap}.header{position:relative!important}.nav{flex-wrap:wrap}</style></noscript>
 </head>
 <body>
@@ -18,8 +18,8 @@
     <a class="brand" href="#home" aria-label="Fahmi Akbari, home"><span class="brand-mark" aria-hidden="true">fa<span>.</span></span><span class="brand-name">Fahmi Akbari</span></a>
     <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">Menu <span aria-hidden="true">+</span></button>
     <ul class="nav-links" id="navLinks">
+      <li><a href="#home">About</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#about">About</a></li>
       <li><a href="#background">Background</a></li>
       <li><a href="#certificates">Certificates</a></li>
       <li><a href="#contact">Contact <span aria-hidden="true">↗</span></a></li>
@@ -28,13 +28,14 @@
 </header>
 <main id="main" tabindex="-1">
   <section class="hero wrap" id="home" aria-labelledby="hero-title">
+    <span id="about" class="legacy-about-anchor" aria-hidden="true"></span>
     <div class="hero-layout">
       <div class="hero-copy">
         <h1 id="hero-title">Fahmi Akbari</h1>
-        <p class="hero-description">I turn data into clear reports and practical insights to help teams understand performance, investigate problems, and make informed decisions.</p>
+        <p class="hero-description">I turn data into clear reports and practical insights to help teams understand performance and make informed decisions. My background in operations helps me connect the analysis with real business needs.</p>
         <div class="hero-actions"><a class="button primary" href="#projects">View projects <span aria-hidden="true">↘</span></a><a class="button outline" href="#contact">Contact</a></div>
       </div>
-      <aside class="hero-aside" aria-label="Profile photo"><div class="portrait-slot"><img src="fahmi-akbari.png?v=20261002" alt="Portrait of Fahmi Akbari" width="1254" height="1254" fetchpriority="high"></div><span class="aside-note">Indonesia</span></aside>
+      <aside class="hero-aside" aria-label="Profile photo"><div class="portrait-slot"><img src="fahmi-akbari.png?v=20261002" alt="Portrait of Fahmi Akbari" width="1254" height="1254" fetchpriority="high"></div></aside>
     </div>
 
   </section>
@@ -60,17 +61,9 @@
     </div>
   </section>
 
-  <section class="about-section wrap section-space" id="about" aria-labelledby="about-title">
-    <div class="section-rail"><p class="eyebrow">02 / About</p></div>
-    <div class="about-body">
-      <h2 id="about-title">About me</h2>
-      <p class="about-lead">I work with data to understand business performance, investigate problems, and support practical decisions. In my current role, this includes analyzing stock and supplier data to support day-to-day warehouse operations.</p>
-      <div class="about-description">
-        <p>My background in maritime and warehouse environments gives me a practical understanding of how business processes work. I bring that perspective to analysis by asking what the numbers mean, checking whether the data is reliable, and considering how the findings can inform action.</p>
-        <p>I use Excel, SQL, Python, and data visualization tools across my work and projects to organize data, explore patterns, and communicate findings clearly. I’m interested in applying these skills to a broader range of business questions and contributing to teams that use data to improve how they work.</p>
-      </div>
-      <div class="toolkit" id="skills"><div class="toolkit-heading"><h3>Tools &amp; skills</h3><span class="small-note">Used in projects and training</span></div><div class="tool-row"><span>Analysis</span><p>SQL / Python / Excel</p></div><div class="tool-row"><span>Visualization</span><p>Power BI / Tableau / Looker Studio</p></div><div class="tool-row"><span>Methods</span><p>Data cleaning / Exploratory analysis / Reporting</p></div></div>
-    </div>
+  <section class="skills-section wrap" id="skills" aria-labelledby="skills-title">
+    <div class="section-rail"><p class="eyebrow">02 / Skills</p><h2 id="skills-title">Tools &amp; skills</h2></div>
+    <div class="toolkit"><p class="small-note">Used in projects and training</p><div class="tool-row"><span>Analysis</span><p>SQL / Python / Excel</p></div><div class="tool-row"><span>Visualization</span><p>Power BI / Tableau / Looker Studio</p></div><div class="tool-row"><span>Methods</span><p>Data cleaning / Exploratory analysis / Reporting</p></div></div>
   </section>
 
   <section class="approach-section" id="approach" aria-labelledby="approach-title"><div class="wrap section-space"><div class="section-heading"><div><p class="eyebrow">03 / Approach</p><h2 id="approach-title">How I work with data</h2></div><p class="section-note">I start with the decision the analysis needs to support, then work through the data to produce findings that are clear, traceable, and useful.</p></div><ol class="process-list"><li><span class="step-number">01</span><h3>Understand the business question</h3><p>Clarify the problem, who will use the analysis, and what decision they need to make. Agree on the scope and metric definitions so the work answers a specific business question.</p></li><li><span class="step-number">02</span><h3>Establish reliable data</h3><p>Check for missing records, duplicates, inconsistent formats, and unexpected values. Validate calculations against the source and document assumptions so the findings can be trusted.</p></li><li><span class="step-number">03</span><h3>Investigate what drives performance</h3><p>Compare trends, segments, and exceptions to understand where performance differs and what needs attention. Test possible explanations and distinguish what the data shows from what still needs investigation.</p></li><li><span class="step-number">04</span><h3>Make the findings useful</h3><p>Present the key findings through clear reports or dashboards, explain their business implications, and recommend practical next steps. Identify what to monitor afterward to assess whether those actions are working.</p></li></ol></div></section>
