@@ -5,13 +5,51 @@
   const navAnchors = [...navLinks.querySelectorAll('a')];
   const filters = [...document.querySelectorAll('.filter')];
   const projects = [...document.querySelectorAll('.project')];
-  const mobile = window.matchMedia('(max-width: 760px)');
+  const mobile = window.matchMedia('(max-width: 900px)');
   document.getElementById('filterStatus').textContent = `${projects.length} ${projects.length === 1 ? 'project' : 'projects'} shown`;
 
   document.getElementById('year').textContent = new Date().getFullYear();
-  const updateHeader = () => header.classList.toggle('scrolled', window.scrollY > 18);
-  updateHeader();
-  window.addEventListener('scroll', updateHeader, { passive: true });
+  // Approach belongs to About; both resume sections belong to Background.
+  const sectionGroups = [
+    ['home', null], ['projects', '#projects'], ['about', '#about'],
+    ['approach', '#about'], ['background', '#background'],
+    ['certificates', '#certificates'], ['contact', '#contact'],
+  ].map(([id, hash]) => ({ element: document.getElementById(id), hash }));
+  let navigationFrame = 0;
+  const updateNavigation = () => {
+    navigationFrame = 0;
+    const readingLine = header.getBoundingClientRect().height + 32;
+    let activeHash = null;
+    sectionGroups.forEach(({ element, hash }) => {
+      if (element.getBoundingClientRect().top <= readingLine) activeHash = hash;
+    });
+    if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) activeHash = '#contact';
+    navAnchors.forEach(link => {
+      const active = link.hash === activeHash;
+      link.classList.toggle('active', active);
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+    header.classList.toggle('scrolled', window.scrollY > 18);
+  };
+  const scheduleNavigation = () => {
+    if (!navigationFrame) navigationFrame = requestAnimationFrame(updateNavigation);
+  };
+  const measureHeader = () => {
+    const height = `${header.getBoundingClientRect().height}px`;
+    if (document.documentElement.style.getPropertyValue('--header-height') !== height) {
+      document.documentElement.style.setProperty('--header-height', height);
+    }
+    scheduleNavigation();
+  };
+  window.addEventListener('scroll', scheduleNavigation, { passive: true });
+  window.addEventListener('resize', measureHeader);
+  window.addEventListener('hashchange', scheduleNavigation);
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(measureHeader).observe(header);
+    new ResizeObserver(scheduleNavigation).observe(document.body);
+  }
+  measureHeader();
 
   const setMenu = open => {
     navLinks.classList.toggle('open', open);
@@ -20,7 +58,12 @@
     menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   };
   menuToggle.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
-  navAnchors.forEach(link => link.addEventListener('click', () => setMenu(false)));
+  navAnchors.forEach(link => link.addEventListener('click', () => {
+    setMenu(false);
+    const target = document.querySelector(link.hash);
+    target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+  }));
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && navLinks.classList.contains('open')) {
       setMenu(false);
@@ -35,21 +78,12 @@
   });
   mobile.addEventListener('change', () => setMenu(false));
 
-  // Content stays visible even when observers or JavaScript are unavailable.
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        navAnchors.forEach(link => {
-          const active = link.hash === '#' + entry.target.id;
-          link.classList.toggle('active', active);
-          if (active) link.setAttribute('aria-current', 'location');
-          else link.removeAttribute('aria-current');
-        });
-      });
-    }, { rootMargin: '-20% 0px -55% 0px' });
-    document.querySelectorAll('main section[id]').forEach(section => observer.observe(section));
-  }
+  document.querySelectorAll('.project-details').forEach(details => {
+    details.addEventListener('toggle', () => {
+      details.querySelector('.details-label').textContent = details.open ? 'Hide details' : 'View details';
+      scheduleNavigation();
+    });
+  });
 
   filters.forEach(button => button.addEventListener('click', () => {
     const value = button.dataset.filter;
@@ -66,6 +100,7 @@
       if (show) count++;
     });
     document.getElementById('filterStatus').textContent = `${count} ${count === 1 ? 'project' : 'projects'} shown`;
+    scheduleNavigation();
   }));
   const certificates = [...document.querySelectorAll('.certificate-item')];
   const certificateControls = document.getElementById('certificateControls');
