@@ -111,6 +111,12 @@ html { scroll-padding-top: calc(var(--header-height) + 16px); }
   .hero-layout { padding-block: 36px; }
 }
 
+.resume-points { padding-left: 1.2em; color: var(--muted); max-width: 650px; }
+.resume-points li + li { margin-top: 12px; }
+.resume-points li::marker { color: var(--rust); }
+.training-heading { font-size: 1.35rem; margin: 8px 0 24px; }
+.education-section .organization:last-child { margin-bottom: 0; }
+
 /* Unified introduction and compact standalone toolkit */
 .hero { position: relative; }
 .legacy-about-anchor { position: absolute; top: 0; }
