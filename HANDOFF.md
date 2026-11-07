@@ -52,6 +52,7 @@ Existing system fonts and temporary cover illustrations are the main limitations
 Homepage CSS version workflow-2. Four connected steps run left to right on desktop, top to bottom at 900px and below. Copy is unchanged. Desktop/mobile screenshots verified. For this revision upload index.html and editorial.css.
 
 
+
 ## Cinematic project detail revision
 Three project routes now exist: projects/inventory-monitoring.html, projects/customer-churn.html, projects/supply-chain.html.
 Homepage gallery View project links open each route in the same tab. Each route links to the next preview and back to the portfolio.
@@ -60,6 +61,7 @@ Design follows the two supplied videos (22.01.31 and 22.01.33): full-image intro
 The homepage design and connected four-step Approach layout remain unchanged.
 Case-study copy is still explicitly placeholder material: no unverified results or metrics were introduced.
 assets/warehouse-story.png is an original built-in Imagegen illustration, not a photograph of the employer's warehouse or a real dashboard.
+Inventory now uses three distinct scenes in the same style: warehouse-story.png (opening), warehouse-stock-detail.png (overview), warehouse-inventory-review.png (reading the results).
 The customer and supply-chain previews use the existing cohorts.jpg and freight.jpg illustrated covers.
 Methods use accessible vertical tabs with Up/Down/Home/End keys and focus states. Without JavaScript, all panels are visible and tab controls are hidden.
 Chapter links maintain an active indicator. Header height is measured to keep anchors clear, including after resizing. Scroll respects reduced-motion preferences.
