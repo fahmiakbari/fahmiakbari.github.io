@@ -50,3 +50,19 @@ Existing system fonts and temporary cover illustrations are the main limitations
 
 ## Workflow layout revision
 Homepage CSS version workflow-2. Four connected steps run left to right on desktop, top to bottom at 900px and below. Copy is unchanged. Desktop/mobile screenshots verified. For this revision upload index.html and editorial.css.
+
+
+## Cinematic project detail revision
+Three project routes now exist: projects/inventory-monitoring.html, projects/customer-churn.html, projects/supply-chain.html.
+Homepage gallery View project links open each route in the same tab. Each route links to the next preview and back to the portfolio.
+Shared project-story.css?v=story-1 and project-story.js?v=story-1 are required in the repository root.
+Design follows the two supplied videos (22.01.31 and 22.01.33): full-image introduction, alternating reading/visual areas, side-navigation for method panels, broad contrasting sections, illustrated transition, and next-project ending.
+The homepage design and connected four-step Approach layout remain unchanged.
+Case-study copy is still explicitly placeholder material: no unverified results or metrics were introduced.
+assets/warehouse-story.png is an original built-in Imagegen illustration, not a photograph of the employer's warehouse or a real dashboard.
+The customer and supply-chain previews use the existing cohorts.jpg and freight.jpg illustrated covers.
+Methods use accessible vertical tabs with Up/Down/Home/End keys and focus states. Without JavaScript, all panels are visible and tab controls are hidden.
+Chapter links maintain an active indicator. Header height is measured to keep anchors clear, including after resizing. Scroll respects reduced-motion preferences.
+QA: all three routes tested at 1366x900, 390x844, 320x740 and 820x1024; no horizontal overflow, all images loaded, tab switching and focus worked, back/next links worked, no JS exceptions. Local relative asset and fragment links verified.
+Upload the entire package contents, retaining assets/ and projects/. This is not an index.html-only update.
+Not published. Actual screenshots and verified findings remain the key missing material.
