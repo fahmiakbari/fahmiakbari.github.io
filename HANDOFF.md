@@ -1,25 +1,52 @@
-# Fahmi Akbari portfolio — simple upload package
+# Fahmi Akbari portfolio — Hallmark folio edition
+Updated 7 November 2026. Not published.
 
-This package keeps every required file together, including the portrait. No assets folder is needed for this version. It preserves the approved design and existing functions.
+## Canonical website
+Static HTML/CSS/JS for GitHub Pages. Homepage: index.html. Detail route: projects/inventory-monitoring.html.
+CSS and JS query version: folio-1.
+All required assets are local. System fonts: Constantia / Iowan Old Style / Georgia for display, Segoe UI / Arial for body. Rendering can differ by OS.
 
-## Upload to the existing GitHub Pages repository
+## Design and interactions
+Graphite background, warm silver accents, serif name and section headings.
+Project presentation follows the owner's WhatsApp video: one large scene, two selectable covers, next/previous controls and a cover expansion transition.
+Keyboard arrow navigation, touch swipe, category filters, reduced motion and no-JavaScript fallbacks.
+No autoplay. Native details preserve the existing problem/methods/findings placeholders.
+Case study opens in the same tab.
+Education and Experience remain separate. No Professional Training heading.
+Certificates show six initially and expand to all seven.
 
-1. Extract the ZIP on your computer.
-2. Open the extracted folder. You should see index.html, editorial.css, site.js, .nojekyll, HANDOFF.md, and fahmi-akbari.png.
-3. Open https://github.com/fahmiakbari/fahmiakbari.github.io/upload/main
-4. Click choose your files. Navigate INTO the extracted folder, select all six files, and click Open. Do not select or upload the ZIP.
-5. Wait until GitHub lists the filenames. Confirm that fahmi-akbari.png and index.html are both listed before committing.
-6. Commit directly to main. Wait for the Pages deployment to complete.
-7. Open https://fahmiakbari.github.io/?v=fahmi-profile-2 to load the updated page. If needed, use a private/incognito window.
+## Assets and facts
+fahmi-akbari.png: owner-provided portrait.
+assets/inventory.jpg, assets/cohorts.jpg, assets/freight.jpg: generated geometric illustrations for project covers, NOT dashboard screenshots or evidence of results.
+Project placeholders remain marked. Replace these with real project material when ready; 1400x780 or larger landscape images are recommended.
+No stock photos, third-party fonts or external script dependencies.
+Email from the owner's supplied banner: fahmiakbari.id@gmail.com.
+LinkedIn from supplied profile screenshot: https://www.linkedin.com/in/fahmiakbarii/
+GitHub from the previously supplied repository owner: https://github.com/fahmiakbari
 
-Existing files with the same paths are updated. Do not delete the repository or change Pages settings. An old assets folder, if present, is harmless; this version loads fahmi-akbari.png from the repository root.
+## Copy changes
+Removed redundant numbered section eyebrows; preserved section headings and anchor IDs.
+Hero shortened from 'I analyze data to understand what’s happening in a business, where problems arise, and what can be improved. My experience in operations helps me turn findings into practical recommendations.'
+to 'I use data to investigate business problems and guide practical decisions.'
+Projects heading is now 'Project collection'.
+Project summaries shortened, while placeholder details remain.
+Contact placeholders replaced with previously supplied contact information.
+Credentials, education dates, employment dates and descriptions preserved.
 
-## Content and maintenance
+## Upload
+Extract the ZIP and upload its CONTENTS into the repository root:
+index.html, editorial.css, site.js, fahmi-akbari.png, .nojekyll, assets/ and projects/.
+Keep folder structure. Do not upload the ZIP itself or put everything in another folder.
+Both assets/ and updated site.js are REQUIRED for the gallery.
 
-The supplied name and portrait are installed. Other personal details, projects, project screenshots, certificates, and contact links still need verified content. Never invent credentials, findings, or achievements. Edit index.html to replace placeholders.
+## Verification
+Edge: desktop 1366x768, mobile 390x844, tablet 820x1024, wide 1920x1080.
+Additional fold checks at 1280x800, 1440x900 and 375x812.
+Verified gallery selection, filters, disabled controls for a single result, native project details, certificate expansion, mobile menu, same-tab route, image loading and no horizontal overflow.
+Keyboard switching, transition cleanup and no-JavaScript visibility checked separately.
+Hallmark static lint: zero Floor failures and zero Reflex findings; render tier unavailable because puppeteer-core is absent. Visual verification performed separately through Playwright/Edge.
+Subagent review unavailable due to its usage limit; final visual review performed in-thread.
+Existing system fonts and temporary cover illustrations are the main limitations.
 
-Navigation remains About, Project, Approach, Contact. Experience, Education, and Certificates remain separate. The certificate list shows six entries initially and reveals another six per click. Duplicate a certificate-item to extend it; there is no hard-coded collection limit. Project categories are dashboard, python, and sql. Preserve the data-category attributes and filter buttons when editing.
-
-All website content is English. No language switcher or Data Snapshot. No build, external service, or backend required. CSS and JavaScript have a version query to request fresh files after this update.
-
-This package was prepared locally; it has not been uploaded or published by the assistant. Committing it to the repository's publishing branch will update the public website.
+## Workflow layout revision
+Homepage CSS version workflow-2. Four connected steps run left to right on desktop, top to bottom at 900px and below. Copy is unchanged. Desktop/mobile screenshots verified. For this revision upload index.html and editorial.css.

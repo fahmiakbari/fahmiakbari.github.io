@@ -103,6 +103,48 @@
     document.getElementById('filterStatus').textContent = `${count} ${count === 1 ? 'project' : 'projects'} shown`;
     scheduleNavigation();
   }));
+  // One cover expands into the stage; the next covers remain available as buttons.
+  const gallery = document.getElementById('gallery');
+  const controls = gallery.querySelector('.gallery-controls');
+  const strip = controls.querySelector('.upcoming');
+  let pool = projects.slice(), selected = 0, flight;
+  const redraw = (index, origin, refocus=false) => {
+    flight?.remove(); flight=null;
+    selected=(index+pool.length)%pool.length;
+    const current=pool[selected];
+    projects.forEach(p=>{p.hidden=p!==current; if(p!==current) p.querySelector('details').open=false;});
+    strip.replaceChildren();
+    for(let n=1;n<pool.length;n++){
+      const item=pool[(selected+n)%pool.length], b=document.createElement('button');
+      b.type='button'; b.className='cover-button';
+      const img=item.querySelector('.scene-image').cloneNode(); img.className='';
+      const name=item.querySelector('h3').textContent;
+      b.append(img,document.createTextNode(name));
+      b.setAttribute('aria-label','Show '+name);
+      b.onclick=()=>redraw(pool.indexOf(item),b.getBoundingClientRect(),true);
+      strip.append(b);
+    }
+    controls.hidden=false;
+    for(const id of ['previous','next'])document.getElementById(id).disabled=pool.length<2;
+    document.getElementById('slideNumber').textContent=String(selected+1).padStart(2,'0')+' / '+String(pool.length).padStart(2,'0');
+    if(refocus)strip.querySelector('button')?.focus({preventScroll:true});
+    if(origin && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+      const end=current.getBoundingClientRect(),clone=current.querySelector('.scene-image').cloneNode();
+      clone.className='scene-flight';gallery.prepend(clone);flight=clone;
+      clone.style.height=end.height+'px';
+      const anim=clone.animate([{transform:`translate(${origin.left-end.left}px,${origin.top-end.top}px) scale(${origin.width/end.width},${origin.height/end.height})`,opacity:1},{transform:'none',opacity:0}],{duration:460,easing:'cubic-bezier(.22,.72,.22,1)'});
+      anim.onfinish=()=>clone.remove();
+    }
+  };
+  const advance=dir=>{if(pool.length>1) redraw(selected+dir,(dir>0?strip.firstElementChild:strip.lastElementChild)?.getBoundingClientRect());};
+  document.getElementById('next').onclick=()=>advance(1);
+  document.getElementById('previous').onclick=()=>advance(-1);
+  gallery.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight'].includes(e.key)){e.preventDefault();const lost=strip.contains(document.activeElement);advance(e.key==='ArrowRight'?1:-1);if(lost)strip.firstElementChild?.focus({preventScroll:true});}});
+  let touch;
+  gallery.addEventListener('touchstart',e=>{touch=e.touches[0]}, {passive:true});
+  gallery.addEventListener('touchend',e=>{if(!touch)return;const dx=e.changedTouches[0].clientX-touch.clientX,dy=e.changedTouches[0].clientY-touch.clientY;if(Math.abs(dx)>65 && Math.abs(dx)>2*Math.abs(dy))advance(dx<0?1:-1);touch=null},{passive:true});
+  filters.forEach(b=>b.addEventListener('click',()=>{pool=projects.filter(p=>b.dataset.filter==='all'||p.dataset.category.split(/\s+/).includes(b.dataset.filter));redraw(0);}));
+  redraw(0);
   const certificates = [...document.querySelectorAll('.certificate-item')];
   const certificateControls = document.getElementById('certificateControls');
   const certificateMore = document.getElementById('certificateMore');
