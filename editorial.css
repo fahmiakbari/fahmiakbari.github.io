@@ -15,7 +15,7 @@
 .portrait-slot img{height:auto}
 .hero-aside{position:relative}
 .hero-aside:before{content:"";position:absolute;z-index:-1;inset:-18px 16px 48px -16px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
-@media(min-width:701px){.hero-layout{min-height:clamp(415px,38vw,530px)}.hero:before{content:"";position:absolute;right:0;top:0;bottom:0;width:48%;background:url("assets/inventory.jpg") center/cover;opacity:.14;mask-image:linear-gradient(90deg,var(--clear),var(--mask-solid) 45%,var(--clear))}}
+@media(min-width:701px){.hero-layout{min-height:clamp(415px,38vw,530px)}.hero:before{content:"";position:absolute;right:0;top:0;bottom:0;width:48%;background:url("inventory.jpg") center/cover;opacity:.14;mask-image:linear-gradient(90deg,var(--clear),var(--mask-solid) 45%,var(--clear))}}
 @media print{.header,.case-header,.filters,.gallery-controls,.certificate-controls,.hero-actions{display:none!important}.project[hidden],.certificate-item[hidden]{display:block!important}}
 
 button:active:not(:disabled),.button:active{transform:translateY(1px)}
